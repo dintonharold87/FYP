@@ -1,0 +1,637 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{acronym}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{tabu}
+\usepackage{array}
+\begin{document}
+\begin{titlepage}
+
+\begin{center}
+
+\includegraphics[width=1\textwidth]{C:/Users/user/Desktop/latex/figures/maklogo.png}\\%\\[0.1in]
+\vspace{1em}%
+% Title
+\Large \textbf {Student Project Monitoring System}\\%\\[0.5in]
+\vspace{0.5em}%
+\normalsize by \\%
+\vspace{0.9em}
+\textup{\small {\bf CSC 19-22}\\}
+ \vspace{2em}%
+{\bf Department of Computer Science \\ School of Computing \& Informatics Technology}\\[0.5in]
+
+\emph{A Project Report Submitted to the \\School of Computing and Informatics Technology
+for the Study Leading to\\ a Project Report in Partial Fulfilment of the
+requirements for the\\ Award of the Degree of Bachelor of Science in \\Computer Science
+of Makerere University}
+
+      
+        \vspace{1in}
+\normalsize {\bf Supervisor:} \\
+
+Ms. Rose Nakibuule \\
+\vspace{2em}
+Department of Computer Science\\
+School of Computing \& Informatics Technology \\
+\url{rnakibuule@cis.mak.ac.ug} Tel: $+256414540628$ 
+
+\vfill
+June, 2019
+
+\end{center}
+
+\end{titlepage}
+\pagenumbering{roman}
+\newpage
+\textbf{Declaration}
+\\We Group CSC19-22 do hereby declare that this Project Report is original and has not been published and/or submitted for any other degree award to any other University before.\\
+\begin{table}[h!]
+\centering
+
+\begin{tabu} to 1.3\textwidth { | X[l] | X[c] | X[r] | }
+ \hline
+ Name & Registration Number & Signature \\
+ \hline
+ Nassimbwa Doreen  & 16/U/10016/EVE  &   \\
+\hline
+ Katende Paul &16/U/5599/EVE  &  \\
+ \hline
+ Ainemukama Dinton Harold  & 16/U/3020/PS  &   \\
+\hline
+ Odeke Moses  & 16/10478/PS  &  \\
+\hline
+\end{tabu}
+\end{table}
+
+\vspace{1.0in}
+\noindent
+Date: \\
+----------------------------------------------------------------------------------
+\newpage
+\textbf{Approval of the  Report}\\
+
+ This Project Report has been submitted for examination with the approval of the following supervisor:\\
+
+\vspace{0.5in}
+\noindent
+Signed: \\
+
+----------------------------------------------------------------------------------\\
+
+\vspace{0.5in}
+\noindent
+Date:\\
+
+----------------------------------------------------------------------------------\\
+\begin{flushleft}
+Ms. Rose Nakibuule\\
+\vspace{0.5em}
+Department of Computer Science\\
+\vspace{0.5em}
+School of Computing \& Informatics Technology \\
+\vspace{0.5em}
+\url{rnakibuule@cis.mak.ac.ug}
+\end{flushleft}
+\newpage
+\textbf{Acknowledgment}\\
+\par Our deepest gratitude goes to our supervisor, \textbf{Ms.Rose Nakibuule} for her guidance, advice and
+constructive comments on project development process, requirement specification and so forth. Besides, she also guided us  in writing a good report. She also provided alot of feedback to us during the report writing which increased the overall quality of this project.
+\vspace*{8mm}
+\par We would also like to take this opportunity to say thank you to all our friends, for always giving us support in everything and some guidance on the system design. Their help is  truly appreciated.
+\vspace*{8mm}
+\par We thank the school for giving us the grand opportunity to work as a team which has indeed promoted our team work spirit and communication skills. We also thank the individual group members for the good team spirit and solidarity.
+\vspace*{8mm}
+\par Lastly and definitely not easily forgotten our sincere gratitude and appreciation goes to our parents for their care, support, advice and motivation during the progress which inspired us to complete the project.
+\newpage
+\textbf{ABSTRACT}\\
+\par The name of this project is Student Project Monitoring System. The main purpose of this project is to develop an online system that can reduce the workload of the FYP Committee in managing the work flows of the Final Year Project and most importantly monitoring the contribution of each student towards their project in their various groups.  By implementing this system, it would provide a lot of conveniences to the FYP Committee of Makerere University College of Computing and Information Sciences while saving time and cost.
+\vspace*{8mm}
+\par The system is limited to the use of SCIT staff only at the moment and will be improved in the next few versions. The methodology that has been chosen for the development of this system is the incremental and iterative model. The reason for choosing this model is because of the constant improvement that could be done to the system. The functions will be added into the system from time to time to increase the value added to the system.
+\vspace*{8mm}
+\par The system design would be based on the existing FYP Portals which would provide high level of user friendliness to the user. This way, the user can focus on using the system to perform the intended task rather than spending time learning how to use the system. The system’s interface will be as simple as possible and contain high usability at the same time.
+\vspace*{8mm}
+\par The system implemented is able to perform many functions. One of them is creation of groups and assignment of supervisors to various groups. Besides, the assignment of supervisors to various groups of students,supervisors can be able the monitor the contribution of each student towards the project . Next, the grade entry is another module that would be included that allow the supervisor to award marks to students basing on how they have been active towards their project.
+\newpage
+\tableofcontents
+\clearpage
+\newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
+\textbf{List of Acronyms}\\
+\begin{acronym}
+\acro{API}{Application Program Interface}
+\acro{CSS}{Cascading Style Sheet}
+\acro{DFD}{Data Flow Diagram}
+\acro{ERD} { Entity Relationship Diagram}
+\acro{FYP}{Final Year Project}
+\acro{GB}{Giga Byte}
+\acro{GHz}{Giga Hertz}
+\acro{HTML}{Hyper Text Markup Language}
+\acro{IT}{ Information Technology}
+\acro{MS}{MicroSoft}
+\acro{RAM}{Random Access Memory}
+\acro{SCIT}{School of Computing and Informatics Technology}
+\end{acronym}
+\clearpage
+\pagenumbering{arabic}
+\newpage
+\setcounter{page}{1}
+\section{Introduction}
+\subsection{Backgrounnd}
+Student project monitoring is a significant part of project management. All
+project activities should be carefully monitored while the project is being accom-
+plished. It is essential that project monitoring is simple and not time-consuming.
+Project monitoring software may really help to simplify this process. First, it
+is necessary to define project goals and plan the activities.
+\par The management of projects currently faces major problems like the inability
+to track down each and every students contribution towards the project, hence
+low quality work from groups.
+\par Therefore, the Student Project Monitoring system for Students Final Year
+Project allows students to easily update project problems as they arise. So, the
+Supervisor will evaluate the progress and also through monitor the contribution
+of each student in a group towards their project by the help of graphs that show
+the contribution of each student in a group. This system also can help students
+streamline the project management process, helping to keep student on track
+and providing user with reports and real-time data so that their project success is assured.
+
+\subsection{Problem Statement}
+Arranging physical meetings between supervisors and their various groups is
+challenging during final year project implementation. This is mainly due to the
+fact that the supervisor is not able to track each student's contribution in the
+project.This makes the process of monitoring students progress very difficult.
+\par So for maximum effectiveness, the review process needs to undergo a formal
+review by using computerized system. So with this system, it will help users as
+it makes the project monitoring and progress monitoring smoother and easier.
+\subsection{Objectives}
+\subsubsection{Main Objective}
+The main Objective of this project is to develop an aiding tool for monitoring
+the final year projects of students by supervisors.
+\subsubsection{Specific Objectives}
+The specific objectives of this project is to:
+\begin{itemize}
+\item Collect requirements and analyze the collected data.
+\item Design the proposed system.
+\item Implement the proposed system.
+\end{itemize}
+\subsection{Scope}
+The scope of this project covers Students' Final year Project Monitoring in Mak-
+erere University College of Computing and Information Systems(COCIS) and
+limited to the School of Computing and Informatics Technology(SCIT).There
+are several modules in this proposed system and the details are as follows:
+\begin{itemize}
+\item Online Chat Function\\
+The supervisor is able to communicate with different groups he/she is
+assigned to so as to monitor progress and provide necessary feedback re-
+garding their progress and also guide them where problems have been
+encountered. This kind of communication will be done remotely.
+\item Report Generation\\
+The system will be able to generate analysis reports which contain the
+statistics of the contribution of each student in a group towards their
+project. Reports will be generated in form of graphs showing the contri-
+bution of each student.
+\item Convey Announcements\\
+The system will be able to convey announcements to students regarding
+appointments with their supervisors as well as reminding them about ap-
+pointments scheduled.
+\item Allocation of Groups\\
+The system will be able to allocate superviors to various final year project
+groups.
+\item Supervisor should be able to view groups\\
+The supervisor should be able to view the groups he / she is in-charge of
+so as to set up virtual meetings.
+\item Registering of groups\\
+The system should be able to register all groups to take part in the final
+year project.
+\end{itemize}
+\subsection{Significance}
+\begin{itemize}
+\item This project will help users (supervisors) to monitor the contribution of
+each student on the project and also to keep track of the progress of
+the projects with the use of project management tools and online chat
+functions.
+\item The  system will save time for both the students and supervisors
+through online chatting.
+\item The  system will save transport of both the student and the
+supervisor in a way that both parties do not have incur transport costs to
+meet hence saving transport.
+\item The system will provide convinience to the users in that they can access
+the system at anytime as long as they have phone, tablet or computer
+with internet connection rather than having to come and meet at the
+University.
+\item In addition to that, we the project developers will gain from this project in
+such a way that it will help us build on our academic knowledge and skills.
+For example it will help us acquire the skills of software development,
+coding, research and project management.
+\end{itemize}
+\section{Literature Review}
+\subsection{Introduction}
+In this chapter,we consider similar projects that have been done and how they
+relate to the project development and execution in relation to our project. We
+also look at their shortcoming so that we can improve those areas in our project.
+\par There exist many Final Year Project portals in the universities around the
+globe but those systems to manage the Final Year Project processes are not
+accessible by outside due to some security issue. The details of the Final Year
+Project management systems can't be found as they are hidden by the univer-
+sities, we can only discover the Final Year Project portals which are used to
+make announcement and sharing of resources.
+\par There are some some existing systems that use web-based application to manage their system:\\
+\begin{itemize}
+\item Managing Student Final Year Projects with Redmine
+\item Clarizen's Project Management Software
+\item Nanyang Technological University Final Year Project Portal
+\item Web-Based Evaluation System for Online Courses and Learning Management Systems
+\item Online Document Management system for Academic Institutes
+\item The Design and Implementation of Online Management System for Undergraduates’ Thesis (Project)
+\end{itemize}
+\begin{table}[h!]
+\centering
+\begin{tabular}{ | m{3cm} | m{3cm}| m{3cm} | m{3cm} | }
+\hline
+\bfseries{Existing System} & \bfseries{Respondent}& \bfseries{Software/ Technique/ Platform} & \bfseries{Result} \\  
+\hline
+Managing Student Final Year Projects with Redmine & University FYP undergraduate students & Web development, Ms Access or Ms SQL & The system provides all the guidance and improvement for student final year project. \\ 
+\hline
+Clarizen's Project Management Software & Team member that is involved in project management. & Web development, Ms Access or Ms SQL& The system  provides solutions, offers users gratification with all aspects of online project progress.  \\  
+\hline
+The Design and Implementation of Online Management System for Undergraduates’ Thesis (Project)& System administrators, teachers, students and auditors & Web development ASP.NET, Ajax, SQL Server & Improvement of teaching management and the teaching quality. \\ 
+\hline
+Nanyang Technological University Final Year Project Portal & University FYP undergraduate students & Web development ASP.NET & The system provides all the guidance and details on FYP to guide undergraduate students to develop their FYP. \\ 
+\hline
+ Web-Based Evaluation System for Online Courses and Learning Management Systems& The approximately 200 students of this course together with four instructors and two administrators & Web development & Implementing a monitoring system of the student's learning behaviour and a consulting system based on student's results. \\ 
+\hline
+  Online Document Management system for Academic Institutes& 160 students in the Faculty of University of Malaya & PHP5, JSP and MYSQL programming languages & Provide a collection of coordination pathways and interfaces to remove the problems of document access \\ 
+\hline
+\end{tabular}
+\caption{Comparison of Existing Systems}
+\label{table:1}
+\end{table}
+\subsection{Research on Existing Systems and relationship to our project}
+\subsubsection{Managing student Final Year Projects with Redmine}
+\par Redmine has an update feature whereby an issue can be “updated” to reflect any problems and findings associating with the specific assigned task. The essential process for it to work is unpretentious. Each student will be given an issue (essentially a task) Corresponding to their name by either from the supervisor or a teammate, with an estimated date of completion. Once a new issue is submitted, all corresponding parties are able to track this task to determine whether it meets the estimated completion deadline or not.\cite{read}
+\par One of the supervisor’s tasks in FYP is to track each student’s progress. There have already been some reasonably good systems put in place for this. In the initial part of the project, each FYP team is required to plan the entire project duration using Microsoft Project. The plan would include each task such as design, development and testing.
+\par Students are required to create a Gantt chart for it. A Gantt chart is a type of bar chart that exemplifies a project schedule. It illustrates the start and finish dates of the terminal elements as well as the summary elements of a project. The intention of the Gantt chart is to help the FYP team to plan their work accordingly.
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/redmine.png}
+  \caption{Redmine Interface}
+  \label{fig:redmine}
+\end{figure}
+\subsubsection{Clarizen's Project Management Software}
+\par Clarizen's online project management solution offers users instant gratification with all aspects of online project scheduling – planning, resource load, task updates, scheduling conflicts and milestone progress. This enables project managers to react quickly and easily to all changes in the system without having to wait for team members to "save" or "update" their entries and
+additions.\cite{khazaliprogress}
+\par Instantly view scheduling dependencies and conflicts – any change made to any project will be instantly updated in the project scheduling view - enabling you to manage these changes and make adjustments as needed.
+\subsubsection{The Design and Implementation of Online Management System for Undergraduates’ Thesis (Project)}
+\par This system was  developed based on online management system for undergraduate's thesis, which is of great practical for improvement of teaching management and quality. The system uses ASP.Net, SQL Server for its development, including four types of users: system administrators, teachers, students and auditors. The paper describes the responsibilities of the four
+categories of users, workflow, design ideas, and discusses some design methods to enhance the security of the system. The system has been widely promoted in some schools of Huaibei Normal University and achieved good results.\cite{wangdesign}
+\subsubsection{Nanyang Technological University Final Year Project Portal}
+This system provides all the guidance and details on FYP to guide undergraduate students to develop their final year project.\cite{khazaliprogress}
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/nanyang.png}
+  \caption{Nanyang Technological University FYP Portal}
+  \label{fig:nanyang}
+\end{figure}
+\subsubsection{Web-Based Evaluation for Online Courses and Learning Management System}
+\par This system focus on the Web-based evaluation framework of online courses and learning management system (LMS), based on Web-based questionnaires that are directed at different target groups for the course contents and the design of the LMS as well as the Web site. The evaluation criteria are described in more detail and are included in Web-based questionnaires.\cite{snae2008web}
+\subsubsection{Online Document Management System for Academic Institutes}
+\par Provide a collection of coordination pathways and interfaces to remove the problems of document access. This system was developed using PHP, JSP and MYSQL. The respondent in the system require 160 students in the Faculty of University of Malaya.\cite{baban2010online}
+\subsubsection{A web-based final year project management system}
+	ProMS, has been created and deployed to help coordinate undergraduate final year projects including automating practical tasks such as the submission of documents. ProMS helps introduce students to potential supervisors, through both student access to staff information, and staff access to draft copies of students’ project proposals. Many students who used the system found that it helped them become aware of potential supervisors whom they had never met, and a sizeable proportion of these students listed staff they were previously unaware of as preferred supervisors. The system helps greatly in expanding students’ knowledge of potential project supervisors. Following the deadline for student project proposals, ProMS made it possible to generate a draft allocation of students to supervisors in only a few hours.\cite{clementmaking}
+\subsubsection{FYP management system at Universiti Kebangsaan Malaysia}
+Their system consists of three major modules including user profile, project monitoring and appointment setting modules. Our system also contains similar functional modules as Barkar’s, while we have additional modules like project allocation, file repository and online communication.\cite{article}
+\subsection{Conclusion}
+While there are many Final Year Project Portals in existence and sytems that help in project management of final year projects, none of them considers the progress monitoring context of the contribution of students towards their final year projects. This context is very important in Final Project portals as it helps the supervisors know how a group of students is contributing towards their project and award marks fairly based on how each student is contributing towards the project.
+\par The proposed system will be able to monitor the progress and contribution of students by generating analysis reports which contain the statistics of the contribution of each student in a group towards their project.
+\section{Methodology}
+The methodology chosen must be appropriate and suitable for the development
+of the system as it will be step-by-step guide that the developer must follow
+in order to deliver the system successfully. In this chapter, a methodology has
+been chosen to apply in the development of Final Year Project Monitoring
+Systems.
+\subsection{Introduction}
+After some studies on the suitable methodology , we decided that we shall use
+the Agile Development from Incremental \& Iterative Development. The reason
+for choosing this methodology is because of the nature of the system that is
+going to be developed. The system focuses on the breadth rather than the
+depth. We will not focus on the depth of a function due to the importance of
+having few working functions which the user can use once the initial version of
+the system has been developed. This means that the functions of the systems
+are being built first so that the user is able to use it. The user will then be able
+to provide the feedback to the developer and improvements can be made in the
+next iteration. Since the requirements of the user is always
+changing, it would be wise to perform incremental on the system so that more
+functions can be added or change later.
+\subsection{Development Approach}
+There are 7 stages in the Incremental \& Iterative Development model which are
+Planning, Analysis, Design, Implementation, Testing, Evaluation and Deploy-
+ment. In this section every single phase in this methodology
+will be discussed in detail.
+\subsubsection{Stage 1- Planning}
+\par In this stage, planning has been done. After some discussion with the project supervisor,
+a project name “Student Project monitoring System” is produced. Once the name has been confirmed,
+studies on the existing FYP Portals have been done. The portals that found on the internet are not
+the same with the FYP Monitoringl that we thought of. The difference is that the FYP
+Portals that are visible on the internet are mainly for the use of information sharing where
+announcements are made. The FYP committee communicates with the final year project students
+through the portal. Besides, the portal also provides download links where the students are able
+to download the necessary files which are important for the project such as guidelines and forms.
+Meanwhile, the FYP Management Portal which we are going to develop is a system where
+the FYP committee is able to monitor the contribution of each student towards their final year project. This
+system will helps in the administration work of FYP which improve the efficiency and
+effectiveness of FYP processes.
+\par After knowing the scope of the project, reviews on the existing system are done.
+Unfortunately the existing FYP management systems of other universities are either hidden or
+can’t be accessed. 
+\par After some researches on the FYP Management Portal, the problem statement has been
+created. Based on the problem statement, we came out with the objective of this new system and the project scopes
+on functionality of the system has been identified.\\
+Deliverables: Problem statement, objective and project scopes
+\subsubsection{Stage 2- Analysis}
+\par In this stage, analysis has been made and one of them is the requirement analysis. Since
+the existing system can’t be found on the internet, an interview with the stakeholder of the FYP
+committee has been performed. After the interview, the requirements of the proposed system are
+gathered. The requirements included the functional and non-functional requirements which are
+essential for the development of the system.
+\par Next, literature reviews in terms of user interface, features, suitable programming
+language and methodology are made. This is done to ensure that the project that is delivered
+matches the users’ requirements and expectation. By learning on the interfaces used by the FYP
+portals, we can create a system that suits the requirement of the user. The interface design must
+be simple yet attractive. Minimum usage of words is used and the most important thing is that
+the arrangement of the web elements must be correct. The features of the systems that had been
+studied are being considered and will be included into the proposed system if the feature is
+usable and helpful for the user in performing tasks. Once we have the information, a system
+requirement document which consists of the requirements of user must be created.\\
+Deliverables: Requirement analysis, functional and non-functional requirement, methodology.
+\subsubsection{Stage 3 - Design}
+\par The design stage is where the project development begins. In this stage, decision on the
+user interface must be made. The appearance of the system must be appropriate and the functions
+that the system have must be stated. The interface design of the system included the layout of the
+system,  the position of the navigation bar, the position of the university name and the position where the information is being displayed. Besides, the colour used on the system must be appropriate and resembles the university. The
+consistency in the position of the web elements, color, font size and layout must be maintained all the time.
+\par Next would be the design of database. Entity Relationship Diagram (ERD) must be
+developed so that the entities can be extracted. All the data elements of the system must be
+included and properly assigned so that the primary key which identify the uniqueness of each
+record and the foreign key that links to another table can be identified. All the tables related to
+the system must be drafted out so that we could know what data is stored into the database and
+which is needed to show to the user. Once we have the tables, we must also perform
+normalization so that the redundancy of the records can be reduced to the minimal.
+\par A test plan must be designed so that the testing can be done once the system has been
+developed. The test plan contains the procedures that are required to perform testing. The test
+plan will identify the person who is required to test the system as different user will have
+different kind of input to the system. The test data must also be included in this test plan so that
+the user knows what should be input into the system and check whether the output is as expected.
+This test plan can be used after the initial version or the first version of the system has been
+developed.\\
+Deliverables: User interface design, database design (ERD), test plan, system specification.
+\subsubsection{Stage 4 - Implementation}
+\par Implementation stage is a stage where the database must be created based on the database
+design produced in the design stage.
+\par Once the database has been created, development of the first version of system shall begin. The
+initial version of the system is developed based on the system requirement created in the earlier
+stage. As for the user interface design, the document that drafted in design stage will be used as a
+guideline. Next, the feature that must be included in the system has been identified earlier.\\
+Deliverables: database, initial version of  the system
+\subsubsection{Stage 5 - Testing}
+\par Once the system has been developed, testing shall be performed as planned. The user
+must input the test data as written in the test plan and check whether the output is as expected. If
+the output is not as expected, it will be recorded so that the evaluation on the system can be done.\\
+Deliverable: System testing
+\subsubsection{Stage 6 - Evaluation}
+\par At this stage, an evaluation of the system will begin. This evaluation will check whether
+the system functions as intended. From the testing at the previous stage, we can check whether
+the system meets the user requirement. We can decide whether the system will go into the next
+iteration or need to perform incremental on the existing functions. There are two things to
+consider at this stage, if the user wants to have more functions then the system will go into the
+next iteration where the development will go back to the planning stage. Another thing is that,
+the user wanted to enhance the existing function which will lead the development of the system
+to go back to the planning stage as well.\\
+Deliverables: Test result, evaluation and feedback
+\subsubsection{Stage - Deployment}
+\par In this stage, the system has meet the requirements from the user and functions work as
+intended which support the user in performing tasks. Therefore, the system is ready for the deployment and ready to be used by the user. The whole processes of development must be documented so that the system can be easily maintained in the future. At the same time, it would also help the user to understand how the system can be operated.\\
+Deliverable: Final version of system
+\subsection{Sampling}
+\par The major population for sampling will be University students and lecturers
+that normally supervise student projects in the past years. We shall use the
+simple random sampling technique where a group of fnal year students and
+lecturers will be selected for study each individual will be chosen entirely by
+chance.
+\subsection{Data Collection}
+To make this system more about solving the problem of student and supervisors
+meeting physically, we will need to collect data from students and supervisors
+we are designing the system for.
+\subsubsection{Observation}
+\par Observations as a method of data collection is a powerful tool as it serves as a
+formulated research purpose, is systematically planned and recorded it is sub-
+jected to checks and controls on validity and reliability. Observations will enable
+recording of the natural behavior of the various proceedings that occur during
+project monitoring.
+\subsubsection{Interviews}
+\par Interviews will be used in the data collection by interviewing different lecturers
+that are normally supervisors to get data necessary for designing the system.
+\subsubsection{Questionnaires}
+\par Questionnaires consist of a number of questions printed or typed in a definite order. They provide a low cost since forms can be emailed to a larger target group, it is free from bias of the interviewer and respondents have adequate time to give well thought out answers.
+\par Questionnaires will be used to collect data from both lecturers and students about the existing system being used and how we can improve on that system.
+\subsection{Analysis Procedures}
+\par The data collected will be analyzed using tools like the statistical package for
+social sciences.
+\par In this phase, the development team will visit potential users (lectures \&
+students) and study their needs and challenges. The team will investigate the
+need for possible upgrades to the application and by the end of the feasibility
+study, a document containing specific  recommendations, personal assignments, costs, project schedule and target dates will be drafted.
+\par The requirements analysis will be done with the aim of coming up with a suitable design that incorporates all necessary requirements of the application.
+\newpage
+\subsection{Project Plan}
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/gantt.png}
+  \caption{Gantt Chart for project development}
+  \label{fig:gantt}
+\end{figure}
+\section{Requirement Document and Specification}
+\subsection{Target User}
+\par The target user for this system would be the supervisors, students and the FYP committee(Admin)  of
+Faculty of Information and Communication Technology only. In this FYP Monitoring System, the admin should be able to assign supervisors to various groups, view groups and supervisors, add or delete groups. \par The Student should be able to view remarks from supervisor, create groups, provide details to the project log, update project log. \par The supervisor should be able to view student contribution towards their project via project log, assign scores to project, assign scores to group, view specific groups assigned to him / her.
+\subsection{Requirements Gathering}
+\par The techniques that have been used for requirement gathering was interviewing, questionnaires and observation as mentioned in chapter 3. One of the reasons we chose interviewing is because the existing system could not be found. This is mainly due to the security and the privacy of universities that are using the system. Such a system which contains the information of lecturers, students as well as the projects will not be published to the public.\cite{alousmart}
+\par Another reason would be the amount of information gathered would be sufficient and in detail since it’s the user that are using the system. The user would be able to precisely state the requirements of the system.
+\par The person that is being interviewed is one of the stakeholders of FYP management team. Since she is one of the FYP committee members managing the flow of the FYP processes, she would know the requirements of the system completely.
+\par As for the document analysis technique, the FYP portal of universities which contains the information of the final year projects has been studied thoroughly. The portals that can be found are just the front end system that the students and public can view. Although the information provided in the portals are shallow but the features and design can be studied and implemented in the FYP Monitoring System.
+\par With the in depth studies on the portals as well as interviews of  one of the stakeholders of FYP team, questionnaires and observation of the current process of monitoring projects , the functional and non-functional requirements can be identified.
+\subsection{Functional and Non-Functional Requirements}
+\subsubsection{Functional Requirements}
+\begin{itemize}
+\item Create Groups.
+\item Assign Supervisors to various groups.
+\item Generate reports.
+\item Send Messages between Supervisors and Students.
+\item Give remarks to student submissions.
+\item Grade students.
+\item Convey Announcements
+\end{itemize}
+\subsubsection{Non- Functional Requirements}
+\begin{itemize}
+\item Increase efficiency and effectiveness of FYP processes by eliminating the manual works done by the FYP Committee and supervisors.
+\item Reduce the work done by the FYP Committee and supervisors by inputting the information to the system directly.
+\item Improve the way the data being manipulated and make things look organized.
+\item Allow the direct communication with the stakeholders.
+\item Save time by providing conveniences to view the statistic directly at the system.
+\item Retrieval of information become easier as printing and viewing is just a click of button.
+\end{itemize}
+\section{Interface and system Design}
+\par One of the most important things that developer must do is to have the design of the system before it is
+being developed. A good system will have a good design to start with, so that the system created is able to cope with the requirements from the users. In this chapter, the interface design of the system would be introduced, followed by the design of the system.
+\subsection{Interface Design}
+\par The interface design must be as simple as possible so that the user does not spend too much time  learning on how to use the system. The design must be simple and consistent so that when a user uses the system, he/she does not need to relearn on how to use the system.
+\subsection{System Features}
+\subsection{Data Flow Diagram}
+\par The Data Flow Diagrams (DFD) were introduced and popularized for structured analysis and design.\cite{scort} It shows the flow of data from external entities into the system, shows how the data is  moved from one process to another, as well as its logical storage (database).
+\par Data flow diagrams also illustrate how data is processed by a system in terms of inputs and outputs. Individuals who want to draw a data flow diagram must first identify external inputs and outputs, determine how the inputs and outputs relate to each other, and explain with graphics how these connections relate and what they result in.
+\newpage
+\subsubsection{Context Diagram}
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/context.png}
+  \caption{Context Diagram(Level- 0 Data Flow Diagram)}
+  \label{fig:context}
+\end{figure}
+\newpage
+\subsubsection{Level - 1 Data Flow Diagram}
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/dfd.png}
+  \caption{Level - 1 Data Flow Diagram}
+  \label{fig:dfd}
+\end{figure}
+\newpage
+\subsection{Entity Relationship Diagram (ERD)}
+\par One of the fundamental activities to be done before the implementation started should be the design of
+database. The design is very crucial as it will affect the whole system if it is not properly plan. There will be an Entity Relationship Diagram (ERD) that shows the relationship between all the entities involved in the system. Before the design of the ERD begins, first we must understand and gather all the requirements of the system. Next, we would have to identify the information or data that are needed to be stored into the database and group them accordingly.
+\par In the ERD diagrams, all the relationship between the entities can be easily identified by the link that used to connect them. There will always be a primary key that uniquely identify the records and foreign key which links to another entity.
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/erd.jpg}
+  \caption{Entity Relationship Diagram (ERD)}
+  \label{fig:erd}
+\end{figure}
+\subsection{Data Dictionary}
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/admin.png}
+\end{figure}
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/group.png}
+\end{figure}
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/supervisor.png}
+\end{figure}
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/proje.png}
+\end{figure}
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/log.png}
+\end{figure}
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/messages.png}
+\end{figure}
+ \begin{figure}[h!]
+  \includegraphics[width=\linewidth]{C://Users/user/Desktop/latex/figures/stu.png}
+\end{figure}
+\newpage
+\vspace*{8mm}
+\section{Implementation and Deployment}
+\par The system implementation can only be started after the design work has been done. During this stage, a step-by-step development and installation would be performed on the system. Once the system has been completed, it can be used by the FYP member in the condition that the minimum requirements to run the system must be met.
+\subsection{System Implementation}
+\par The first thing that had been done during the implementation was to download all the development tools such as PostgreSQL which we used for our database. It is very time-consuming as long time is needed to perform the configuration and it is troublesome to install the development tools. Another tool that aided in the development was Python and the flask framework  which we used in implementing the backend. The Flask framework  is used for developing web applications. Some of the additional tools used were Sublime Text which was our text editor.
+\vspace*{5mm}
+\par To create an interface for the system, HTML  with the CSS is used. With CSS, many things can be standardized so that the location of the navigation bar, header, content and footer can always be in the same location. The changes can also be easily made with some adjustment to the CSS style sheet. We also used Java Script for communicating with the API's in our backend.
+\vspace*{5mm}
+\par Lastly, the most important software that needed in the Student Progress Monitoring System is the
+browser that is used to view the  pages created.
+\subsection{System Installation}
+\subsubsection{Hardware Requirements}
+\begin{table}[h!]
+\centering
+\begin{tabular} {  | m{8cm} | m{6cm}| }
+ \hline
+ \textbf{Description} &  \textbf{Minimum Requirements}\\
+ \hline
+Processor & 1.5GHz or faster \\
+\hline
+ Memory & 2 GB RAM \\
+\hline
+Hard Drive & 10GB of available hard disk space \\
+\hline
+ Video Card & DirectX 10 capable video card running at 1024 x 768 or higher-resolution display  \\
+\hline
+\end{tabular}
+\caption{Hardware Requirements for Student Progress Monitoring System}
+\label{table:2}
+\end{table}
+\vspace*{1in}
+\subsubsection{Software Requirements}
+\begin{table}[h!]
+\centering
+\begin{tabular} {  | m{8cm} | m{6cm}| }
+ \hline
+ \textbf{Description} &  \textbf{Minimum Requirements}\\
+ \hline
+Operating System & MS Windows \\
+\hline
+ Browser &  Google Chrome \& Mozilla Firefox \\
+\hline
+Python & Python 3.4, Python 2.7 \& PyPy \\
+\hline
+\end{tabular}
+\caption{Software Requirements for Student Progress Monitoring System}
+\label{table:3}
+\end{table}
+\vspace{3mm}
+\section{system Testing}
+	\par Once the system has been successfully developed, testing has to be performed to ensure that the system is working as intended. This is also to check that the system meets the requirement stated earlier. Besides that, system testing will help in finding the errors that may be hidden from the user. There are few types of testing which includes the unit testing, functional testing and integration testing. The testing must be completed before it is being deployed for the user to use.\cite{simleyteaching}
+\subsubsection{Unit Testing}
+\par Unit testing is a kind of testing that test on each of the individual component in the system. The testing of the components includes the forms in each of the module to make sure that they are working as intended stated by \cite{win}. The main point in unit testing is to make sure that error does not happen during the usage of system. At the same time, if errors or bugs do happen, they have to be fixed immediately and this reduces the number of faults in the system. This kind of testing can also be used to check on the input in the form to ensure that the correct format is being entered into the system and to the database thus, producing high integrity records. In order to perform the testing, a test plan has to be used.
+\subsubsection{Functional Testing}
+\par The functional testing will take place after the unit testing. In this functional testing, the functionality of each of the module is tested. This is to ensure that the system produced meets the specifications and requirements as stated earlier. Most if not all the bugs will be uncovered in the functional testing so that less error will occur during the usage of the system. When more bugs or errors are discovered and fixed in the testing, it improves the overall quality of the system.
+\subsubsection{Integration Testing}
+\section{Future Enhancement and Limitation}
+\par The Student Project Monitoring System is only usable by the lectures and  Students from  College of Computing \& Inforrmation Sciences, SCIT only. In the near Future, this system should allow students and lecturers from other colleges to use it.
+\vspace*{8mm}
+\par  Besides, the system can only be viewed correctly by using a computer and some functions in the system cannot be properly viewed  if the user is accessing the system using a smart phone. So we intend to create a mobile application for both Android and Ios users to enable students and lecturers easily access the portal on their mobile phones.
+\vspace*{8mm}
+\par The Student Project Monitoring System  will still have a lot of improvement to be done. In the near future, the system would be able to reduce the workload of the Supervisors and provide ease in  the process of monitoringg the final year projects of students. The system would also be used by people from different faculties as well as the students so that the communication between the involved parties would be facilitated.
+\section{Conclusion}
+\par In this 21st century, web based applications play an important role in aiding human in performing the tasks which are very tedious and troublesome. Without the application, tasks would need longer time to be done and it would cost much effort for  humans.
+\vspace*{8mm}
+\par One of the tasks mentioned was the monitoring of FYP processes in the universities. There are a lot of processes which require the person-in-charge to do it manually which takes up a lot of time. The person-in charge might need to enter the records one-by-one for the students who register for final year project and the data would not be kept well without the use of database. Furthermore, managing the flow of FYP involves more than one party and works maybe very complicated if the communication between the parties is not good.
+Miscommunication of the file versions always happen when the files are not properly documented. The assignment of supervisor to students would be very difficult if things are done manually by using the paper to register and update the record traditionally to the person-incharge. Not to mention that the report generation would need higher time than by using a system.
+\vspace*{8mm}
+\par Therefore, in order to help in reducing the problems, a  web based application name Student Progress Monitoring Systeml is created which is accessible by the authorized user anytime and anywhere. The system is easy to use as it has user-friendly interface, easy to manage the record as insert, update, view and delete is just a click of button away. The report generation could also be done when it is needed, the report generated can be saved for later use or be printed out as hardcopy which is easy to be carried around.
+\vspace*{8mm}
+\par In conclusion, the Student Project Monitoring System  is meant to help the Supervisors by reducing the workload, making monitoring of the progress of student Final Year projects as well as management of records easier and records are long-lasting. It also allows the user to produce report easily with the clicks of few buttons located on the screen.
+
+\vspace*{8mm}
+\section{Appendix}
+\subsection{Work Plan}
+\vspace*{8mm}
+
+\begin{table}[h!]
+\centering
+\begin{tabular} {  | m{8cm} | m{6cm}| }
+ \hline
+ \textbf{Activity} &  \textbf{Duration}\\
+ \hline
+Data Collection & 2 weeks \\
+\hline
+ Data Analysis& 1 week \\
+\hline
+System Design \& Implementation & 20 weeks \\
+\hline
+System Testing \& Validation & 1 week  \\
+\hline
+\end{tabular}
+\caption{Project Work Plan}
+\label{table:4}
+\end{table}
+\vspace*{8mm}
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{apalike}
+\bibliography{projectreferences}
+
+\end{document}
